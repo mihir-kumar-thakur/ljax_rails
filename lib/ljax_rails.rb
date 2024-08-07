@@ -14,7 +14,7 @@ module LjaxRails
   def self.encryptor
     @encryptor ||= begin
       key = if Rails.application.config.respond_to? :secret_key_base
-        Rails.application.config.secret_key_base || Rails.application.config.secret_token
+        Rails.application.secret_key_base || Rails.application.config.secret_key_base || Rails.application.config.secret_token
       else
         Rails.application.config.secret_token
       end
