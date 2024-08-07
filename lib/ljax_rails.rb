@@ -12,11 +12,6 @@ module LjaxRails
   end
 
   def self.encryptor
-    @encryptor ||= begin
-      key = if Rails.application.config.respond_to? :secret_key_base
-        Rails.application.secret_key_base
-      end
-      ActiveSupport::MessageEncryptor.new key
-    end
+    @encryptor ||= ActiveSupport::MessageEncryptor.new(Rails.application.config.ljax_rails_token)
   end
 end
